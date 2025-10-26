@@ -1,0 +1,24 @@
+{
+  "name": "swift-social-messaging-contract",
+  "version": "1.0.0",
+  "description": "Swift v2 SocialMessaging Contract - Direct messaging between users",
+  "scripts": {
+    "test": "hardhat test",
+    "compile": "hardhat compile",
+    "deploy": "hardhat run scripts/deploy.js --network base",
+    "deploy:testnet": "hardhat run scripts/deploy.js --network base-sepolia",
+    "verify": "hardhat run scripts/verify.js --network base",
+    "clean": "hardhat clean"
+  },
+  "keywords": ["solidity", "base", "swift-v2"],
+  "author": "Swift v2 Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.19.0",
+    "dotenv": "^16.3.1"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.9.3"
+  }
+}
