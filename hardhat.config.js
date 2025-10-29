@@ -1,6 +1,12 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 
+// Validate private key format
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const accounts = PRIVATE_KEY && PRIVATE_KEY.startsWith('0x') && PRIVATE_KEY.length === 66
+  ? [PRIVATE_KEY]
+  : [];
+
 module.exports = {
   solidity: {
     version: "0.8.19",
@@ -14,20 +20,17 @@ module.exports = {
   networks: {
     base: {
       url: process.env.BASE_MAINNET_RPC_URL || "https://mainnet.base.org",
-      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      accounts: accounts,
       chainId: 8453,
-      gasPrice: 100000000, // 0.1 gwei
     },
     "base-sepolia": {
       url: "https://sepolia.base.org",
-      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
+      accounts: accounts,
       chainId: 84532,
     },
   },
   etherscan: {
-    apiKey: {
-      base: process.env.BASESCAN_API_KEY || "",
-    },
+    apiKey: process.env.BASESCAN_API_KEY || "",
     customChains: [
       {
         network: "base",
@@ -39,4 +42,7 @@ module.exports = {
       }
     ]
   },
+  sourcify: {
+    enabled: false
+  }
 };
