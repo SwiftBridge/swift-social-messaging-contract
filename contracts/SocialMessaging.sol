@@ -303,7 +303,7 @@ contract SocialMessaging is ReentrancyGuard, Ownable {
         address _user,
         uint256 _offset,
         uint256 _limit
-    ) external view returns (uint256[] memory) {
+    ) public view returns (uint256[] memory) {
         uint256[] memory userMessageIds = userMessages[_user];
         uint256 length = userMessageIds.length;
         
